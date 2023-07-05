@@ -1,0 +1,142 @@
+body{
+    font-size:20px;
+    font-family:Calibri;
+    color:black;
+}
+
+.bar{
+    margin-top:5px;
+    margin-left:0px;
+    margin-right:0px;
+    margin-bottom:5px;
+    background-color:white;
+    font-family:Calibri;
+    color:black;
+    display:flex;
+    align-items:center;
+}
+.logo{
+    padding-left:5px;
+    flex:50%;
+    font-weight:bold;
+}
+.desktop{
+    display:block;
+    padding-right:5px;
+    flex:50%;
+    display:flex;
+    justify-content:flex-end;
+}
+.mobile{
+    display:none;
+    width:30px;
+    height:30px;
+    background-color:white;
+    object-fit:cover;
+    cursor:pointer;
+}
+#menu{
+    background-color:white;
+    border:2px solid black;
+    border-radius:5px;
+    text-align:center;
+    padding:5px;
+}
+
+.hide{
+    display:none;
+}
+
+.item{
+    flex:none;
+    padding-left:10px;
+    padding-right:10px;
+}
+.header{
+    background-color:rgb(233, 175, 69);
+    height:250px;
+    display:flex;
+    align-items:center;             /*垂直 - 上中下置中*/
+    justify-content:center;         /*水平 - 左中右置中*/
+}
+.headerword{
+    font-size:40px;
+    flex:none;
+}
+
+.main{
+    margin-top:20px;
+    width:1200px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.option{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.box{
+    margin-left:10px;
+    margin-right:10px;
+    height:50px;
+    background-color:rgb(177, 133, 52);
+    flex:30%;
+    display:flex;
+    margin:10px;
+}
+
+.indi{
+    flex:none;
+    display:flex;
+    align-items:center;
+}
+
+img.choose{
+    object-fit:cover;
+    height:50px;
+    width:80px;
+}
+
+span.design{
+    flex:none;
+    margin-left:5px;
+}
+
+.section{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.thing{
+    flex:15%;
+    margin:10px;
+    background-color:rgb(202, 164, 94);
+    text-align:center;
+    padding-bottom:5px;
+}
+
+img.photo{
+    width:100%;
+    background-image:url(p2.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+@media (max-width:1200px){
+    .box{flex:40%}
+    .main{width:90%}
+    .thing{flex:20%}
+}
+
+@media (max-width:600px){
+    .headerword{font-size:35px}
+    .desktop{display:none}
+    .mobile{display:block}
+    .main{width:90%}
+    .box{flex:100%}
+    .thing{flex:100%}
+}

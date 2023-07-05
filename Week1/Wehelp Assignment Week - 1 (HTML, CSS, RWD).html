@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"></meta>
+        <meta charset="utf-8"></meta>
+        <title>Wehelp Assignment Week - 1 (HTML, CSS, RWD)</title>
+        <link rel="stylesheet" type="text/css" a href="Layout.css"/>
+    </head>
+    <body>
+        <!--選單列-->
+        <div class="bar">
+            <span class="logo">My Website</span>
+            <span class="desktop">      <!--熒幕尺寸大於1200px所顯示的選單項目-->
+                <span class="item">Item 1</span>
+                <span class="item">Item 2</span>
+                <span class="item">Item 3</span>
+                <span class="item">Item 4</span>
+            </span>
+            <img src="menu.png" class="mobile" onclick="Click(this);"/>     <!--熒幕尺寸小於600px所顯示的選單項目-->
+            <div id="menu" class="hide">
+                <div>Item 1</div>       <!--每一個獨立的選單項目-->
+                <div>Item 2</div>
+                <div>Item 3</div>
+                <div>Item 4</div>
+            </div>
+        </div>
+
+        <!--歡迎文字方框-->
+        <div class="header">
+            <span class="headerword">Welcome to MyPage</span>
+        </div>
+
+        <!--主内容-->
+        <div class="main">
+            <!--三個方框-->
+            <div class="option">        <!--一條裝三個方框-->
+                <div class="box">       <!--每一個獨立的盒子-->
+                    <div class="indi">  <!--盒子裏面的東西-->
+                    <img class="choose" src="p1.JPG"></img>
+                    <span class="design">Promotion 1</span>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="indi">
+                    <img class="choose" src="p1.JPG"></img>
+                    <span class="design">Promotion 2</span>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="indi">
+                    <img class="choose" src="p1.JPG"></img>
+                    <span class="design">Promotion 3</span>
+                    </div>
+                </div>
+            </div>
+            <!--十二個選項-->
+            <div class="section">
+                <div class="thing">     <!--每一個選項-->
+                    <img class="photo" src="p2.JPG"/>
+                    Title 1
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 2
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 3
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 4
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 5
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 6
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 7
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 8
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 9
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 10
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 11
+                </div>
+                <div class="thing">
+                    <img class="photo" src="p2.JPG"/>
+                    Title 12
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function Click(element){
+                let clicking=document.querySelector("#menu");
+                    clicking.classList.toggle("hide");
+            }
+        </script>
+    </body>
+</html>
