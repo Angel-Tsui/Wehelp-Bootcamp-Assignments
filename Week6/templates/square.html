@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>計算結果</title>
+        <link rel="stylesheet" type="text/css" a href="{{url_for('static',filename='Layout.css')}}"/>
+    </head>
+    <body>
+        <div class="header">計算結果</div>
+        <div>正整數 <span style="font-weight:bold;">{{ n }}</span> 的平方是</div>
+        <br/>
+        <span class="result">{{ result }}</span>
+        <br/>
+        <div style="font-size:14px;"><a href="/">回到登入頁面</a></div>
+    </body>
+</html>
