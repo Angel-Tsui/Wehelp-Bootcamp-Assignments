@@ -38,20 +38,6 @@ def verify():
         if userinfo:
             session["user"]=userinfo
             return redirect("/member")
-        # exist=cursor.fetchall()
-        # # 將所有 user 的 name 和 password 做對照，辨認正在等人的人賬號密碼對不對
-        # every_user={}
-        # for everyone in exist:
-        #     every_username=everyone[2]
-        #     every_password=everyone[3]
-        #     every_user[every_username]=every_password
-        # # 如果正在登入的人賬號密碼對，讓他登入
-        # if (username in every_user) and (pw==every_user[username]):
-        #     # 把所有關於登入了的 user 的 info 放到 session 裏面
-        #     cursor.execute("SELECT * FROM member LEFT JOIN message ON member.id=message.member_id WHERE username=%s",(username,))
-        #     userinfo=cursor.fetchone()
-        #     session["user"]=userinfo
-        #     return redirect("/member")
         else:
             return redirect("/error?message=賬號或密碼不正確")
 
