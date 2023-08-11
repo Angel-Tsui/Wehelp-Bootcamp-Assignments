@@ -10,7 +10,6 @@ con=mysql.connector.connect(
     password="",
     host="localhost",
     database="website"
-    # buffered=True
 )
 cursor=con.cursor()
 app=Flask(
