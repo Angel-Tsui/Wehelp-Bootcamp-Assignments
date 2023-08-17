@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>會員頁面</title>
+        <link rel="stylesheet" type="text/css" a href="{{url_for('static',filename='Layout.css')}}"/>
+    </head>
+    <body>
+        <div class="header_member">
+            <img src="/icon.png"/>
+            <span>登入成功</span>
+            <a href="/signout">登出</a>
+        </div>
+        <div>你好{{ loggedin_user }}，歡迎來到留言小區</div>
+        <!-- <div class="subsection_title">留言區</div> -->
+        <form action="/createMessage" method="POST" id="form3">
+            <!-- <div class="title">來吧，想説就説！</div> -->
+            <input type="text" name="content" placeholder="來吧，想説就説！" required/>
+            <button type="submit">送出留言</button>
+        </form>
+        <br/>
+        <div class="comment">
+            <div class="subsection_title">留言區</div>
+            <table>
+                <tr>
+                    <th style="display:none">留言id</th>
+                    <th>留言者</th>
+                    <th>留言内容</th>
+                </tr>
+                {% for each in all_comment %}
+                <tr>
+                    <td style="display:none">{{ each.id }}</td>
+                    <td>{{ each.name }}</td>
+                    <td>{{ each.content }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br/>
+        
+          
+            <div class="functions">
+                <div class="side_by_side">
+                    <div class="title">查詢會員姓名</div>
+                    <form action="/api/member" id="form_check">
+                        <input type="text" id="check_username" placeholder="請輸入會員帳號 Username"/>
+                        <button type="submit" onclick="getResult()">查詢</button>
+                        <div id="results"></div>
+                    </form>
+                </div>
+                <div class="side_by_side">
+                    <div class="title">更新我的姓名</div>
+                    <form action="/api/member" id="form_update">
+                        <input type="text" id="update_name" placeholder="請輸入新姓名 New Name"/>
+                        <button type="submit" onclick="update()">更新</button>
+                        <div id="update"></div>
+                    </form>
+                </div>
+        </div>
+        <script>
+            let form_update=document.querySelector("#form_update");
+            form_update.addEventListener("submit",function(submit){
+                submit.preventDefault();
+            })
+
+            function update(){
+                let update_status=document.querySelector("#update")
+                let update_name=document.querySelector("#update_name").value;
+                console.log(update_name);
+                let src_update="/api/member";
+                fetch(src_update,{
+                    method:"PATCH",
+                    headers:{
+                        "Content-Type":"application/json; charset=UTF-8",
+                    },
+                    body:JSON.stringify(
+                        {
+                            "name": update_name
+                        }
+                    )
+                }).then(function(status){
+                    return status.json();
+                }).then(function(result){
+                    if (Object.keys(result) == "ok"){
+                        console.log(result);
+                        update_status.innerHTML="更新成功"
+                    }
+                    else{
+                        console.log(result);
+                        update_status.innerHTML="更新失敗"
+                    }
+                })
+            }
+
+            let form_check=document.querySelector("#form_check");
+            form_check.addEventListener("submit", function(submit){
+                    submit.preventDefault();
+                }
+            )
+
+            function getResult(){
+                let results=document.querySelector("#results")
+                let check_username=document.querySelector("#check_username").value
+                // console.log(check_username)
+                let src="/api/member?username="+check_username;
+                fetch(src).then(function(response){
+                    // console.log(response)
+                    return response.json();
+                }).then(function(result){
+                    console.log(result);
+                    if(result["data"] != null){
+                        results.innerHTML="name: "+result["data"]["name"]+" (username: "+result["data"]["username"]+')';
+                    }
+                    else{
+                        results.innerHTML="查無此人"
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
