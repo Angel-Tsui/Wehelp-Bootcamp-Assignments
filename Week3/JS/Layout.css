@@ -93,7 +93,7 @@ cursor:pointer;
 }
 
 .header{
-    background-image:url(header.jpg);
+    background-image:url(header.JPG);
     background-size:cover;
     height:250px;
     display:flex;
