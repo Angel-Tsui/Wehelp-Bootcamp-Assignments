@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>會員頁面</title>
+        <link rel="stylesheet" type="text/css" a href="{{url_for('static',filename='Layout.css')}}"/>
+    </head>
+    <body>
+        <div class="header_member">
+            <img src="/icon.png"/>
+            <span>登入成功</span>
+            <a href="/signout">登出</a>
+        </div>
+        <div>你好{{ loggedin_user }}，歡迎來到留言小區</div>
+        <!-- <div class="subsection_title">留言區</div> -->
+        <form action="/createMessage" method="POST" id="form3">
+            <!-- <div class="title">來吧，想説就説！</div> -->
+            <input type="text" name="content" placeholder="來吧，想説就説！" required/>
+            <button type="submit">送出留言</button>
+        </form>
+        <br/>
+        <div class="comment">
+            <div class="subsection_title">留言區</div>
+            <table>
+                <tr>
+                    <th style="display:none">留言id</th>
+                    <th>留言者</th>
+                    <th>留言内容</th>
+                    <th class="del">刪除留言</th>
+                </tr>
+                {% for each in all_comment %}
+                <tr>
+                    <td>{{ each.name }}</td>
+                    <td>{{ each.content }}</td>
+                    <!-- 只有登入了的會員的留言顯示刪除按鈕 -->
+                    {% if each.member_id == user_id %}
+                    <form action="/deleteMessage" method="POST" id="form4">
+                        <td class="del"><button value="{{ each.id,each.member_id }}" name="delete" type="submit">刪除</button></td>
+                    </form>
+                    {% endif %}
+                    <!-- 其他的留言不顯示刪除按鈕 -->
+                    {% if each.member_id != user_id %}
+                    <td class="del"></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <script>
+            let form4=document.querySelector("#form4")
+            form4.addEventListener("submit", function del(form4) {
+                if(confirm("確認刪除？")){
+                    form4.submit();
+                }
+                else{
+                    form4.preventDefault();
+                }
+            })
+            
+        </script>
+    </body>
+</html>
