@@ -3,7 +3,6 @@ from flask import request
 from flask import redirect
 from flask import render_template
 from flask import session
-from flask import url_for
 import mysql.connector
 import json
 con=mysql.connector.connect(
