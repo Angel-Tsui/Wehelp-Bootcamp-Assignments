@@ -4,7 +4,6 @@ from flask import redirect
 from flask import render_template
 from flask import session
 import mysql.connector
-import json
 con=mysql.connector.connect(
     user="root",
     password="",
