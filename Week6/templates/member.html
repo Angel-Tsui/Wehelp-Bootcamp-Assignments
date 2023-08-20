@@ -49,12 +49,12 @@
         </div>
         <script>
             let form4=document.querySelector("#form4")
-            form4.addEventListener("submit", function del(form4) {
+            form4.addEventListener("submit", function(del) {
                 if(confirm("確認刪除？")){
-                    form4.submit();
+                    del.submit();
                 }
                 else{
-                    form4.preventDefault();
+                    del.preventDefault();
                 }
             })
             
