@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width,initial-scale=1"></meta>
+        <title>Assignment 2</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            // 第一題
+            console.log("--task 1--")
+            function findAndPrint(messages){
+            // write down your judgment rules in comments
+                // the parameter is whomever mentioned the following keywords are likely to be at least 17 years old ("18 years old","college student","legal age in Taiwan","vote")
+                // if they mentioned they are 18 years old, we assume them to be over 17 (assuming they are not speaking irony) > over 17 years old
+                // legal age in Taiwan is 18 years old > over 17 years old
+                // if they are able to vote, we assume they are legal age in US, which is 18 years old > over 17 years old
+                // most students 
+            // your code here, based on your own rules   
+                let judgement=["18 years old","college student","legal age in Taiwan","vote"]
+                for(x=0;x<Object.keys(messages).length;x++){
+                    for(y=0;y<judgement.length;y++){
+                        if(Object.values(messages)[x].includes(judgement[y])){
+                            console.log(Object.keys(messages)[x])
+                        }
+                    }
+                }
+            }
+            findAndPrint({
+            "Bob":"My name is Bob. I'm 18 years old.",
+            "Mary":"Hello, glad to meet you.",
+            "Copper":"I'm a college student. Nice to meet you.",
+            "Leslie":"I am of legal age in Taiwan.",
+            "Vivian":"I will vote for Donald Trump next week",
+            "Jenny":"Good morning."
+            });
+
+            // 第二題
+            console.log("--task 2--")
+            function calculateSumOfBonus(data){
+            // write down your bonus rule in comments
+            // Role: engineer: salary x 104%; CEO: x 109%; sales: x 106%
+            // Performance: above average: salary x 113%; average: remain unchange; below average: x 90%
+            // your code here, based on your own rules
+
+                // 把所有員工的資料獨立出來
+                let employee=data.employees
+
+                // 把salary換成數字和統一貨幣
+                let pre=[]
+                for(g=0;g<employee.length;g++){
+                    if(typeof employee[g].salary==="string"){
+                        if(employee[g].salary.includes(",")){
+                            employee[g].salary=employee[g].salary.replace(",","");
+                        }
+                        
+                        if(employee[g].salary.includes("USD")){
+                            employee[g].salary=employee[g].salary.slice(0,-3);
+                            employee[g].salary=parseInt(employee[g].salary);
+                            employee[g].salary=employee[g].salary*30;
+                        }   
+                    }
+                    pre.push(parseInt(employee[g].salary));
+                }
+
+                // 算出員工原本salary的總和
+                basic_salary=0
+                for(og=0;og<pre.length;og++){
+                    basic_salary=basic_salary+pre[og]
+                }
+
+                // 根據不同role制定salary
+                for(y=0;y<employee.length;y++){
+                    if (employee[y].role=="Engineer"){
+                        employee[y].salary=employee[y].salary*1.04
+                    }
+                    else if(employee[y].role=="CEO"){
+                        employee[y].salary=employee[y].salary*1.09
+                    }
+                    else if(employee[y].role=="Sales"){
+                        employee[y].salary=employee[y].salary*1.06
+                    }
+                }
+
+                // 根據不同performance制定salary
+                for(z=0;z<employee.length;z++){
+                    if(employee[z].performance.includes("above")){
+                        employee[z].salary=employee[z].salary*1.13
+                    }
+                    else if(employee[z].performance.includes("below")){
+                        employee[z].salary=employee[z].salary*0.9
+                    }
+                }
+
+                // 算出連bonus的salary總和
+                let with_bonus=0
+                for(w=0;w<employee.length;w++){
+                    with_bonus=with_bonus+employee[w].salary
+                }
+
+                // 算出今個月bonus的總數
+                let total_bonus=0
+                total_bonus=with_bonus - basic_salary
+                console.log(parseInt(total_bonus))
+            }
+            calculateSumOfBonus({
+            "employees":[
+            {
+            "name":"John",
+            "salary":"1000USD",
+            "performance":"above average",
+            "role":"Engineer"
+            },
+            {
+            "name":"Bob",
+            "salary":60000,
+            "performance":"average",
+            "role":"CEO"
+            },
+            {
+            "name":"Jenny",
+            "salary":"50,000",
+            "performance":"below average",
+            "role":"Sales"
+            }
+            ]
+            }); // call calculateSumOfBonus function
+
+            // 第三題
+            console.log("--task 3--")
+            function func(...data){
+            // your code here
+                // 抽出列表裏所有的中間字
+                let middle_name
+                let all={}
+
+                for(q=0;q<data.length;q++){
+                    middle_name=data[q][1]
+                    if(all.hasOwnProperty(middle_name)){
+                        all[middle_name]+=1;
+                    }
+                    else{
+                        all[middle_name]=1;
+                    }
+                }
+                // 查看中間字有沒有和其他人重複
+                confirm=[]
+                for(t=0;t<Object.keys(all).length;t++){
+                    if(Object.values(all)[t]==1){
+                        confirm.push(Object.keys(all)[t]);
+                    }
+                }
+                if(confirm.length==0){
+                    console.log("沒有");
+                    return;
+                }
+
+                // 如果中間字對上就log
+                for(r=0;r<data.length;r++){
+                    for(w=0;w<confirm.length;w++){
+                        if(data[r][1].includes(confirm[w])){
+                            console.log(data[r]);
+                        }
+                    }
+                }
+            }
+            func("彭⼤牆", "王明雅", "吳明"); // print 彭⼤牆
+            func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花"); // print 林花花
+            func("郭宣雅", "林靜宜", "郭宣恆", "林靜花"); // print 沒有
+
+            // 第四題
+            console.log("--task 4--")
+            function getNumber(index){
+            // your code here
+                arr=[0,4,3]
+                if (index<3){
+                    console.log(arr[index]);
+                    return
+                }
+
+                let data
+                for(u=3;u<index+1;u++){
+                    data = arr[u-1] + arr[u-2] - arr[u-3]
+                    arr.push(data)
+                }
+                console.log(data)
+            }
+            getNumber(1); // print 4
+            getNumber(5); // print 10
+            getNumber(10); // print 15
+
+            console.log("--task 5--")
+            function findIndexOfCar(seats, status, number){
+            // your code here
+                // 如果空位數量比 number 大，而且車廂狀態 status 是 1 的車廂記錄下來
+                const available=[]
+                for(i=0;i<=seats.length;i++){
+                    if(seats[i] >= number && status[i] == 1){
+                        available.push(seats[i])
+                    }
+                }
+                // 如果 available 裏沒有 item，代表沒有符合的車廂，直接印出 -1
+                if(available.length == 0){
+                    console.log("-1")
+                }
+                // 如果 available 裏有 item，找出最相近的車廂，印出車廂編號
+                else{
+                    match=Math.min(...available)
+                    ticket=seats.indexOf(match)
+                    console.log(ticket)
+                }
+            }
+            findIndexOfCar([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2); // print 4
+            findIndexOfCar([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4); // print -1
+            findIndexOfCar([4, 6, 5, 8], [0, 1, 1, 1], 4); // print 2
+        </script>
+    </body>
+</html>
