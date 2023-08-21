@@ -36,7 +36,7 @@
                     <!-- 只有登入了的會員的留言顯示刪除按鈕 -->
                     {% if each.member_id == user_id %}
                     <form action="/deleteMessage" method="POST" id="form4">
-                        <td class="del"><button value="{{ each.id,each.member_id }}" name="delete" type="submit">刪除</button></td>
+                        <td class="del"><button value="{{ each.id }}" name="delete" type="submit">刪除</button></td>
                     </form>
                     {% endif %}
                     <!-- 其他的留言不顯示刪除按鈕 -->
