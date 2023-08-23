@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>主頁</title>
+        <link rel="stylesheet" type="text/css" a href="{{url_for('static',filename='Layout.css')}}"/>
+    </head>
+    <body>
+        <div class="header">歡迎光臨我的網站</div>
+        <div class="fill_in">
+            <div class="title">會員登入</div>
+            <form action="/signin" method="POST" id="form">
+                <div>賬號 <input type="text" name="acc"/></div>
+                <div>密碼 <input type="password" name="pw"/></div>
+                <br/>
+                <div id="checkbox_word"><input type="checkbox" id="check"> 同意條款</input></div>
+                <div id="warning">請先同意條款</div>
+                <button type="submit" id="btn0">登入</button>
+            </form>
+        </div>
+
+        <div class="fill_in">
+            <div class="subsection_title">開放功能</div>
+            <div class="title">計算正整數的平方</div>
+            <form id="form2">
+                <input type="text" name="num" placeholder="請輸入正整數" id="number" required>
+                <button type="submit">計算</button>
+                <div id="n_warning">必須是正整數：即數值大於0的整數</div>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+
+            let form=document.querySelector("#form");
+            let warning=document.querySelector("#warning");
+            form.addEventListener("submit", function(submit){
+                let checkbox=document.querySelector("#check");
+                if(checkbox.checked==false){
+                    warning.style.display="block";
+                    submit.preventDefault();
+                }
+            })
+
+            let form2=document.querySelector("#form2");
+            let n_warning=document.querySelector("#n_warning");
+            form2.addEventListener("submit", function(calc){
+                let number=document.querySelector("#number").value;
+                // console.log(number)
+                n=parseInt(number);
+                if(!Number.isInteger(n) || n<=0){
+                    n_warning.style.display="block";
+                    calc.preventDefault();
+                }
+                else{
+                    calc.preventDefault();
+                    window.location.href="/square/"+number;
+                }
+            })
+
+        </script>
+    </body>
+</html>
